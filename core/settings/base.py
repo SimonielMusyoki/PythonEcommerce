@@ -33,6 +33,8 @@ THIRD_PARTY_APPS = []
 
 LOCAL_APPS = [
     "apps.accounts",
+    "apps.catalog",
+    "apps.orders",
 ]
 
 INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS + LOCAL_APPS
@@ -107,11 +109,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [
-    os.path.join(ROOT_DIR, "staticfiles"),
+    os.path.join(ROOT_DIR, "static"),
 ]
-STATIC_ROOT = "/static/"
+STATIC_ROOT = os.path.join(os.path.dirname(ROOT_DIR), "static_cdn", "static_root")
+
+
 MEDIA_URL = "/media/"
-MEDIA_ROOT = "/media/"
+MEDIA_ROOT = os.path.join(os.path.dirname(ROOT_DIR), "static_cdn", "media_root")
+PROTECTED_ROOT = os.path.join(os.path.dirname(ROOT_DIR), "static", "protected_media")
 
 
 # Default primary key field type

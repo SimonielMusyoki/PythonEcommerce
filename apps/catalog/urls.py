@@ -1,6 +1,11 @@
 from django.conf.urls import url
 
-from .views import ProductListView, ProductDetailSlugView, ProductDownloadView
+from .views import (
+    ProductListView,
+    ProductDetailSlugView,
+    ProductDownloadView,
+    SearchProductView,
+)
 
 urlpatterns = [
     url(r"^$", ProductListView.as_view(), name="list"),
@@ -10,4 +15,5 @@ urlpatterns = [
         ProductDownloadView.as_view(),
         name="download",
     ),
+    url(r"^$", SearchProductView.as_view(), name="query"),
 ]
