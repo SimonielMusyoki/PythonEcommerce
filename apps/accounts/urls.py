@@ -3,6 +3,8 @@ from django.urls import re_path
 from apps.catalog.views import UserProductHistoryView
 from .views import AccountHomeView, AccountEmailActivateView, UserDetailUpdateView
 
+app_name = "account"
+
 urlpatterns = [
     re_path(r"^$", AccountHomeView.as_view(), name="home"),
     re_path(r"^details/$", UserDetailUpdateView.as_view(), name="user-update"),

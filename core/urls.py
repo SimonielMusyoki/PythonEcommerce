@@ -30,7 +30,7 @@ urlpatterns = [
     re_path(r"^about/$", about_page, name="about"),
     # re_path(r'^accounts/login/$', RedirectView.as_view(url='/login')),
     re_path(r"^accounts/$", RedirectView.as_view(url="/account")),
-    re_path(r"^account/", include("apps.accounts.urls")),
+    re_path(r"^account/", include("apps.accounts.urls", namespace="account")),
     re_path(r"^accounts/", include("apps.accounts.passwords.urls")),
     re_path(r"^address/$", RedirectView.as_view(url="/addresses")),
     re_path(r"^addresses/$", AddressListView.as_view(), name="addresses"),
@@ -57,7 +57,7 @@ urlpatterns = [
     re_path(r"^register/guest/$", GuestRegisterView.as_view(), name="guest_register"),
     re_path(r"^logout/$", LogoutView.as_view(), name="logout"),
     re_path(r"^api/cart/$", cart_detail_api_view, name="api-cart"),
-    re_path(r"^cart/", include("apps.orders.urls.cart")),
+    re_path(r"^cart/", include("apps.orders.urls.cart", namespace="cart")),
     re_path(
         r"^billing/payment-method/$", payment_method_view, name="billing-payment-method"
     ),
@@ -71,9 +71,9 @@ urlpatterns = [
         r"^bootstrap/$", TemplateView.as_view(template_name="bootstrap/example.html")
     ),
     re_path(r"^library/$", LibraryView.as_view(), name="library"),
-    re_path(r"^orders/", include("apps.orders.urls.orders")),
-    re_path(r"^products/", include("apps.catalog.urls.products")),
-    re_path(r"^search/", include("apps.catalog.urls.search")),
+    re_path(r"^orders/", include("apps.orders.urls.orders", namespace="orders")),
+    re_path(r"^products/", include("apps.catalog.urls.products", namespace="products")),
+    re_path(r"^search/", include("apps.catalog.urls.search", namespace="search")),
     re_path(r"^settings/$", RedirectView.as_view(url="/account")),
     re_path(
         r"^settings/email/$",

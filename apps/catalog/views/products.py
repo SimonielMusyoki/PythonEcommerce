@@ -36,7 +36,7 @@ class UserProductHistoryView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(UserProductHistoryView, self).get_context_data(*args, **kwargs)
-        cart_obj, new_obj = Cart.objects.new_or_get(self.request)
+        cart_obj, new_obj = Cart.objects.get_or_create(self.request)
         context["cart"] = cart_obj
         return context
 
@@ -56,7 +56,11 @@ class ProductListView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(ProductListView, self).get_context_data(*args, **kwargs)
-        cart_obj, new_obj = Cart.objects.new_or_get(self.request)
+        user = self.request.user
+        if user.is_authenticated:
+            cart_obj, new_obj = Cart.objects.get(user=user)
+        else:
+            cart_obj, new_obj = Cart.objects.get_or_create(self.request)
         context["cart"] = cart_obj
         return context
 
