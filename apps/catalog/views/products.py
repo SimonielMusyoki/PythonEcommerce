@@ -1,12 +1,15 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect
 from django.views.generic import ListView, DetailView, View
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect
 
-from analytics.mixins import ObjectViewedMixin
 
-from carts.models import Cart
+from apps.orders.models import ProductPurchase
+
+from apps.analytics.mixins import ObjectViewedMixin
+
+from apps.orders.models import Cart
 
 from apps.catalog.models import Product, ProductFile
 
@@ -93,14 +96,6 @@ class ProductDetailSlugView(ObjectViewedMixin, DetailView):
         except:
             raise Http404("Uhhmmm ")
         return instance
-
-
-import os
-from wsgiref.util import FileWrapper  # this used in django
-from mimetypes import guess_type
-
-from django.conf import settings
-from orders.models import ProductPurchase
 
 
 class ProductDownloadView(View):

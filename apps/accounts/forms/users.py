@@ -6,7 +6,7 @@ from django.utils.safestring import mark_safe
 
 User = get_user_model()
 
-from .models import EmailActivation, GuestEmail
+from apps.accounts.models import EmailActivation, GuestEmail
 
 
 class ReactivateEmailForm(forms.Form):

@@ -173,7 +173,7 @@ class EmailActivation(models.Model):
                     settings, "BASE_URL", "https://www.simonielmusyoki.com"
                 )
                 key_path = reverse(
-                    "account:email-activate", kwargs={"key": self.key}
+                    "email-activate", kwargs={"key": self.key}
                 )  # use reverse
                 path = "{base}{path}".format(base=base_url, path=key_path)
                 context = {"path": path, "email": self.email}

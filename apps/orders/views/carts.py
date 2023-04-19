@@ -3,16 +3,11 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
 
-from accounts.forms import LoginForm, GuestForm
-from accounts.models import GuestEmail
+from apps.accounts.forms import AddressCheckoutForm, LoginForm, GuestForm
+from apps.accounts.models import Address
 
-from addresses.forms import AddressCheckoutForm
-from addresses.models import Address
-
-from billing.models import BillingProfile
-from orders.models import Order
-from products.models import Product
-from apps.orders.models import Cart
+from apps.catalog.models import Product
+from apps.orders.models import Order, Cart, BillingProfile
 
 
 import stripe
